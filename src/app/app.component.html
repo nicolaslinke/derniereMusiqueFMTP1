@@ -1,8 +1,23 @@
-<form (submit)="request()">
+<form (submit)="searchAlbums()">
   <input type="search" name="search" [(ngModel)]="search">
   <input type="submit" value="Search">
 </form>
-<div *ngIf="album != null">
-  {{album.artist}}
-  <img src="{{album.image}}" alt="artist">
+<div class="col">
+  <div *ngIf="album != null" class="row-3">
+    <ul>
+      <li *ngFor="let a of albums">
+        {{a.album}}
+        <form (submit)="clickAlbum(a)">
+          <input type="image"  src="{{a.image}}" alt="artist">
+        </form>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="chosenAlbum != null" class="row-3">
+    <ul>
+      <li *ngFor="let s of chosenAlbum.chansons">
+        {{s}}
+      </li>
+    </ul>
+  </div>
 </div>
